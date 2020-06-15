@@ -21,39 +21,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Mono_Assistant' ) ) :
 	/**
+	 * Mono Assistant Class
 	 *
 	 * @since 1.0
 	 */
 	class Mono_Assistant {
 
 		/**
+		 * Base instance var.
 		 *
 		 * @since 1.0
 		 */
 		private static $instance;
 
 		/**
+		 * Instance method.
 		 *
 		 * @since 1.0
 		 */
 		public static function register() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mono_Assistant ) ) {
 				self::$instance = new Mono_Assistant();
-				self::$instance->init();
 				self::$instance->define_constants();
 				self::$instance->includes();
 			}
 		}
 
 		/**
-		 *
-		 * @since 1.0
-		 */
-		public function init() {
-			add_action( 'enqueue_assets', 'plugin_assets' );
-		}
-
-		/**
+		 * Defined constants.
 		 *
 		 * @since 1.0
 		 */
@@ -65,6 +60,7 @@ if ( ! class_exists( 'Mono_Assistant' ) ) :
 		}
 
 		/**
+		 * Define a constant.
 		 *
 		 * @param string $name
 		 * @param string $value
@@ -93,6 +89,7 @@ endif;
 
 
 /**
+ * Plugin class instance.
  *
  * @since 1.0
  */
@@ -101,6 +98,7 @@ function mono_assistant() {
 }
 
 /**
+ * Plugin activation notice for theme requirement.
  *
  * @since 1.0
  */
@@ -111,19 +109,18 @@ function mono_assistant_activation_notice() {
 }
 
 /**
- *
+ * Plugin activation check.
  *
  * @since 1.0
  */
 function mono_assistant_activation_check() {
 	$theme = wp_get_theme(); // gets the current theme
-	if ( 'Mono' == $theme->name || 'Mono' == $theme->parent_theme ) {
-		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-			add_action( 'after_setup_theme', 'mono_assistant' );
-		} else {
-			mono_assistant();
-		}
+	if ( 'Mono' === $theme->name || 'Mono' === $theme->parent_theme ) {
+		add_action( 'after_setup_theme', 'mono_assistant' );
 	} else {
+		if ( ! function_exists( 'deactivate_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		add_action( 'admin_notices', 'mono_assistant_activation_notice' );
 	}
