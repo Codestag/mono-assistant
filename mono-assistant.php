@@ -77,10 +77,12 @@ if ( ! class_exists( 'Mono_Assistant' ) ) :
 		}
 
 		/**
+		 * Get file includes.
 		 *
 		 * @since 1.0
 		 */
 		public function includes() {
+			require_once MA_PLUGIN_PATH . 'includes/widgets/stag-widget.php';
 			require_once MA_PLUGIN_PATH . 'includes/widgets/recent-posts.php';
 			require_once MA_PLUGIN_PATH . 'includes/widgets/custom-recent-posts.php';
 			require_once MA_PLUGIN_PATH . 'includes/widgets/static-content.php';
