@@ -1,0 +1,4 @@
+### MONO Assistant Changelog
+
+## 1.0.0 - June 15, 2020
+* Initial release
