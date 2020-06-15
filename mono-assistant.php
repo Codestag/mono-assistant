@@ -85,8 +85,6 @@ if ( ! class_exists( 'Mono_Assistant' ) ) :
 			require_once MA_PLUGIN_PATH . 'includes/widgets/custom-recent-posts.php';
 			require_once MA_PLUGIN_PATH . 'includes/widgets/static-content.php';
 			require_once MA_PLUGIN_PATH . 'includes/widgets/featured-post.php';
-
-			require_once MA_PLUGIN_PATH . 'includes/updater/updater.php';
 		}
 	}
 endif;
